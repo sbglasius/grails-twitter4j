@@ -20,8 +20,8 @@ class Twitter4jController {
         return true
     }
     def index = {
-        def consumerKey = ConfigurationHolder.config.twitter4j.consumerKey ?: ''
-        def consumerSecret = ConfigurationHolder.config.twitter4j.consumerSecret ?: ''
+        def consumerKey = ConfigurationHolder.config.twitter4j.OAuthConsumerKey ?: ''
+        def consumerSecret = ConfigurationHolder.config.twitter4j.OAuthConsumerSecret ?: ''
         [consumerKey: consumerKey, consumerSecret:consumerSecret]
     }
 
