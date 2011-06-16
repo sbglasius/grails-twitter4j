@@ -1,5 +1,15 @@
 This plugin makes it easy to both send and receive Twitter messages inside a Grails application.
 
+h3. Version information
+
+The plugin is now versioned together with the twitter4j jar library it depends on. If there are patches to a given
+version of the plugin due to bugs, the version will be extended.
+
+h3. If you use it, let me know
+
+If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
+Send me a tweet to @sbglasius or send me an email to soeren@glasius.dk - thank you!
+
 h3. Installation
 
 grails install-plugin twitter4j
