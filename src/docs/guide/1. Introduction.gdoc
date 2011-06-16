@@ -27,7 +27,7 @@ Make a note of your Consumer Key and Consumer Secret, you will need it shortly
 
 h4. Getting your requestToken from Twitter
 
-run your app, and goto http://localhost:8080/yourApp/twitter4j- enter the Consumer Key and Secret and click "Request token"
+run your app, and goto http://localhost:8080/yourApp/twitter4j - enter the Consumer Key and Secret and click "Request token"
 
 Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"
 
@@ -38,7 +38,15 @@ h4. Test if it works
 Goto http://localhost:8080/yourApp/twitter4j/status and enter a twitter-message. If it works, you should be able to see your
 update on your twitter page: http://www.twitter.com/yourname
 
+h4. Securing your application
 
+You probably do not want the twitter4j controller enabled in your application. It is easily disabled in your Config.groovy:
+
+{code}
+    twitter.disableTwitter4jController = true
+{code}
+
+Alternatively you can use a security plugin and securing the controller.
 
 
 h3. Examples
