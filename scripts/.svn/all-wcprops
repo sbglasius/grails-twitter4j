@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/grails-plugins/!svn/ver/69032/grails-twitter4j/trunk/scripts
+END
+_Install.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/grails-plugins/!svn/ver/69032/grails-twitter4j/trunk/scripts/_Install.groovy
+END
+_Uninstall.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/grails-plugins/!svn/ver/69032/grails-twitter4j/trunk/scripts/_Uninstall.groovy
+END
+_Upgrade.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/grails-plugins/!svn/ver/69032/grails-twitter4j/trunk/scripts/_Upgrade.groovy
+END

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+        <title>1. Introduction</title>
+        <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" title="Ref" charset="utf-8"/>
+    </head>
+    <body class="body">
+    <h1><a name="1. Introduction">1. Introduction</a></h1>This plugin makes it easy to both send and receive Twitter messages inside a Grails application.<p class="paragraph"/><h3>Installation</h3><p class="paragraph"/>grails install-plugin twitter4j<p class="paragraph"/><h3>Configuration</h3><p class="paragraph"/><h4>Enable your application in twitter.</h4><p class="paragraph"/>Log into your twitter account (eg. http://www.twitter.com/yourname) and then go to https://dev.twitter.com/apps/new to
+register your app.<p class="paragraph"/>Select your application type as "Client"<p class="paragraph"/>Make a note of your Consumer Key and Consumer Secret, you will need it shortly<p class="paragraph"/><h4>Getting your requestToken from Twitter</h4><p class="paragraph"/>run your app, and goto http://localhost:8080/yourApp/twitter4j- enter the Consumer Key and Secret and click "Request token"<p class="paragraph"/>Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"<p class="paragraph"/>Paste the configuration code into your Config.groovy file and restart the app<p class="paragraph"/><h4>Test if it works</h4><p class="paragraph"/>Goto http://localhost:8080/yourApp/twitter4j/status and enter a twitter-message. If it works, you should be able to see your
+update on your twitter page: http://www.twitter.com/yourname<p class="paragraph"/><p class="paragraph"/>
+<h3>Examples</h3><p class="paragraph"/>The following are some simple examples to give you a feel for the plugin.<p class="paragraph"/><h4>Sending a twitter update</h4><p class="paragraph"/>In a controller or service
+<div class="code"><pre>class SomeController &#123;<p class="paragraph"/>    def twitter4jService<p class="paragraph"/>    def someAction = &#123;
+        twitter4jService.updateStatus(<span class="java&#45;quote">"This is a status&#45;update from twitter"</span>)
+    &#125;
+&#125;</pre></div><p class="paragraph"/><h4>Getting your own latest updates</h4><p class="paragraph"/><div class="code"><pre>class SomeController &#123;<p class="paragraph"/>    def twitter4jService<p class="paragraph"/>    def someAction = &#123;
+        def updates = twitter4jService.getUserTimeline() // of type ResponseList&#60;Status&#62;
+        &#91;statusUpdates: updates&#93;
+    &#125;
+&#125;</pre></div><p class="paragraph"/><h3>More than one twitter-account? (<strong class="bold">untested</strong>)</h3><p class="paragraph"/>Alter your configuration to:
+<div class="code"><pre>twitter &#123;
+    disableTwitter4jController = <span class="java&#45;keyword">true</span>
+    '<span class="java&#45;keyword">default</span>' &#123;
+        OAuthConsumerKey = '&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthConsumerSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessToken = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessTokenSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+    &#125;
+    'otherAccount' &#123;
+        OAuthConsumerKey = '&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthConsumerSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessToken = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessTokenSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+    &#125;
+&#125;</pre></div><p class="paragraph"/>And before your twitter-calls do this
+<div class="code"><pre>twitter4j.connect('otherAccount')</pre></div><p class="paragraph"/>
+<h3>Where to get more information.</h3><p class="paragraph"/>The plugin exposes the <a href="http://twitter4j.org/en/javadoc/index.html" target="blank">Twitterj4 API</a> through @Delegation.<p class="paragraph"/>Find the Twitter4j homepage here: <a href="http://twitter4j.org" target="blank"></a>
+    </body>
+</html>
