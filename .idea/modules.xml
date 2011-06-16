@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/grails-twitter4j.iml" filepath="$PROJECT_DIR$/grails-twitter4j.iml" />
-      <module fileurl="file://$PROJECT_DIR$/grails-twitter4j-grailsPlugins.iml" filepath="$PROJECT_DIR$/grails-twitter4j-grailsPlugins.iml" />
     </modules>
   </component>
 </project>

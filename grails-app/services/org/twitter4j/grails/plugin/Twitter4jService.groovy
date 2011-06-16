@@ -1,16 +1,18 @@
 package org.twitter4j.grails.plugin
 
+import twitter4j.auth.AccessToken
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
 import twitter4j.conf.ConfigurationBuilder
-import twitter4j.http.AccessToken
+import twitter4j.User
 
-class Twitter4jService {
+class Twitter4jService implements Twitter {
 
     static transactional = false
 
-    @Delegate @Lazy
+    @Delegate
+    @Lazy
     Twitter twitter = connect()
 
     def connect(account = 'default') {
@@ -26,7 +28,7 @@ class Twitter4jService {
 
     private getTwitterConfiguration(account) {
         def configuration = ConfigurationHolder.config.twitter."$account"
-        if(!configuration) {
+        if (!configuration) {
             throw new IllegalArgumentException("Missing 'twitter.$account' configuration in your Config.groovy file")
         }
         return configuration

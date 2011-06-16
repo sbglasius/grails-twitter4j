@@ -2,9 +2,9 @@ package org.twitter4j.grails.plugin
 
 import twitter4j.Twitter
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
-import twitter4j.http.RequestToken
+import twitter4j.auth.RequestToken
 import twitter4j.TwitterFactory
-import twitter4j.http.AccessToken
+import twitter4j.auth.AccessToken
 import twitter4j.TwitterException
 import javax.servlet.http.HttpServletResponse
 
