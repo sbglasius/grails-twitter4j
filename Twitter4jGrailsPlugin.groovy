@@ -34,7 +34,7 @@ class Twitter4jGrailsPlugin {
 
     def doWithSpring = {
 	
-		def prop = application.config.twitter.twitterUserListenerClass
+		def prop = application.config.twitter.userListenerClass
 		if(prop){
 			def clazz = application.classLoader.loadClass(prop)
 			log.debug "Register twitter user listenet[${clazz}]"
