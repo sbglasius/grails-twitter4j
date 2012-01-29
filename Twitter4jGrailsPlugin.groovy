@@ -8,7 +8,7 @@ class Twitter4jGrailsPlugin {
 	
 	Logger log = Logger.getLogger(getClass())
 	
-    def version = "0.2"
+    def version = "0.3.1"
     def grailsVersion = "1.3 > *"
 
     def author = "Soeren Berg Glasius, Arthur Neves"
