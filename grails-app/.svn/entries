@@ -1,52 +1,0 @@
-10
-
-dir
-72529
-https://svn.codehaus.org/grails-plugins/grails-twitter4j/trunk/grails-app
-https://svn.codehaus.org/grails-plugins
-
-
-
-2011-07-14T18:45:10.407207Z
-72529
-arthurnn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-832c1c66-4827-0410-8465-ccb17913cd09
-
-conf
-dir
-
-controllers
-dir
-
-domain
-dir
-
-i18n
-dir
-
-services
-dir
-
-taglib
-dir
-
-utils
-dir
-
-views
-dir
-
