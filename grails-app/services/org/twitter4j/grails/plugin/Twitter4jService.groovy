@@ -4,7 +4,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
 import twitter4j.conf.ConfigurationBuilder
-import twitter4j.http.AccessToken
+import twitter4j.auth.AccessToken
 
 class Twitter4jService {
 
