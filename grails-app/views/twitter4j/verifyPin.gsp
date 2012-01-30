@@ -11,7 +11,7 @@
   twitter {
     disableTwitter4jController = false  // To avoid intruders to use controller alltogether.
     'default' {
-      debugEndabled          = false
+      debugEnabled          = false
       OAuthConsumerKey       = '${consumerKey}'
       OAuthConsumerSecret    = '${consumerSecret}'
       OAuthAccessToken       = '${accessToken.token}'
