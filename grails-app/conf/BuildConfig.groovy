@@ -15,7 +15,9 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-        runtime group:"org.twitter4j", name:"twitter4j-core", version:"2.2.3"
+        runtime group:"org.twitter4j", name:"twitter4j-core", version:"3.0.2"
+        runtime group:"org.twitter4j", name:"twitter4j-async", version:"3.0.2"
+        runtime group:"org.twitter4j", name:"twitter4j-stream", version:"3.0.2"
     }
 
 	plugins {
