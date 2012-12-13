@@ -13,6 +13,12 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-        runtime group:"org.twitter4j", name:"twitter4j-core", version:"2.2.3"
+        //runtime group:"org.twitter4j", name:"twitter4j-core", version:"2.1.11"
+        runtime group:"org.twitter4j", name:"twitter4j-core", version:"2.2.6"
+        runtime group:"org.twitter4j", name:"twitter4j-async", version:"2.2.6"
+        runtime group:"org.twitter4j", name:"twitter4j-stream", version:"2.2.6"
+        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
+
+        // runtime 'mysql:mysql-connector-java:5.1.13'
     }
 }
