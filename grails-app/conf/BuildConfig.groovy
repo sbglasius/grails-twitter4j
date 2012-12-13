@@ -17,4 +17,8 @@ grails.project.dependency.resolution = {
 	dependencies {
         runtime group:"org.twitter4j", name:"twitter4j-core", version:"2.2.3"
     }
+
+	plugins {
+
+	}
 }
