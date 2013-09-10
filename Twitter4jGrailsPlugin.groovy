@@ -8,11 +8,11 @@ class Twitter4jGrailsPlugin {
 	
 	Logger log = Logger.getLogger(getClass())
 	
-    def version = "0.3.2"
+    def version = "0.4.0"
     def grailsVersion = "1.3 > *"
 
-    def author = "Soeren Berg Glasius, Arthur Neves"
-    def authorEmail = "soeren@glasius.dk, arthurnn@gmail.com"
+    def author = "Soeren Berg Glasius, Arthur Neves, Rubén Salinas"
+    def authorEmail = "soeren@glasius.dk, arthurnn@gmail.com, rubensalinasgarcia@gmail.com"
     def title = "Twitter4j for Grails"
     def description = 'Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)'
 
