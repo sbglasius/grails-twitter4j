@@ -9,19 +9,4 @@
     <resource>org.twitter4j.grails.plugin.Twitter4jController</resource>
     <resource>org.twitter4j.grails.plugin.Twitter4jService</resource>
   </resources>
-  <repositories>
-    <repository name='grailsCentral' url='http://grails.org/plugins' />
-    <repository name='http://twitter4j.org/maven2' url='http://twitter4j.org/maven2/' />
-    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
-  </repositories>
-  <dependencies>
-    <compile>
-      <dependency group='org.twitter4j' name='twitter4j-stream' version='3.0.3' />
-      <dependency group='org.twitter4j' name='twitter4j-core' version='3.0.3' />
-      <dependency group='org.twitter4j' name='twitter4j-async' version='3.0.3' />
-    </compile>
-  </dependencies>
-  <plugins />
-  <runtimePluginRequirements />
-  <behavior />
 </plugin>
