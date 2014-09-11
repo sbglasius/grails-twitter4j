@@ -1,0 +1,12 @@
+<plugin name='twitter4j' version='4.0.4' grailsVersion='2.4 &gt; *'>
+  <author>Soeren Berg Glasius, Arthur Neves</author>
+  <authorEmail>soeren@glasius.dk, arthurnn@gmail.com</authorEmail>
+  <title>Twitter4j for Grails</title>
+  <description>Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)</description>
+  <documentation>http://grails.org/plugin/twitter4j</documentation>
+  <type>Twitter4jGrailsPlugin</type>
+  <resources>
+    <resource>org.twitter4j.grails.plugin.Twitter4jController</resource>
+    <resource>org.twitter4j.grails.plugin.Twitter4jService</resource>
+  </resources>
+</plugin>

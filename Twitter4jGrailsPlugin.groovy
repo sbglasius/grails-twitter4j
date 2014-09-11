@@ -1,92 +1,102 @@
-import org.apache.log4j.Logger;
-import org.twitter4j.grails.plugin.TwitterUserStreamFactoryBean;
-import org.springframework.context.ApplicationContext
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import org.codehaus.groovy.grails.commons.DefaultGrailsApplication
+import org.codehaus.groovy.grails.commons.GrailsApplication
+import twitter4j.*
+import org.twitter4j.grails.plugin.TwitterUserStreamFactoryBean
 
 class Twitter4jGrailsPlugin {
 
-	Logger log = Logger.getLogger(getClass())
+    // the plugin version
+    def version = "4.0.4"
+    // the version or versions of Grails the plugin is designed for
+    def grailsVersion = "2.4 > *"
+    // resources that are excluded from plugin packaging
+    def pluginExcludes = [
+        "grails-app/views/error.gsp"
+    ]
 
-	def version = "3.0.2"
+    def title = "Twitter4j for Grails"
+    def author = "Soeren Berg Glasius, Arthur Neves"
+    def authorEmail = "soeren@glasius.dk, arthurnn@gmail.com"
+    def description = 'Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)'
 
-	def grailsVersion = "1.3 > *"
+    // URL to the plugin's documentation
+    def documentation = "http://grails.org/plugin/twitter4j"
 
-	def author = "Soeren Berg Glasius, Arthur Neves"
-	def authorEmail = "soeren@glasius.dk, arthurnn@gmail.com"
-	def title = "Twitter4j for Grails"
-	def description = 'Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples). Plugin version follows twitter4j version included.'
+    // Extra (optional) plugin metadata
 
-	def documentation = "http://grails.org/plugin/twitter4j"
+    def license = "APACHE"
 
-	def license = "APACHE"
+    // Details of company behind the plugin (if there is one)
+//    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
 
-	def developers = [
-			[name: "Soeren Berg Glasius", email: "soeren@glasius.dk"],
-			[name: "Arthur Neves", email: "arthurnn@gmail.com"]
-	]
+    // Any additional developers beyond the author specified above.
+    def developers = [ [ name: "Daniel Gerbaudo", email: "info@danielgerbaudo.com" ],
+                       [ name: "Ricardo Vilella", email: "vilellaricardo@gmail.com" ]]
 
-    def issueManagement = [ system: "GIT", url: "https://github.com/sbglasius/grails-twitter4j/issues" ]
+    // Location of the plugin's issue tracker.
+//    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
 
-    def scm = [ url: "https://github.com/sbglasius/grails-twitter4j.git" ]
+    // Online location of the plugin's browseable source code.
+//    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
 
-	def dependsOn = [:]
-	def pluginExcludes = [
-			"grails-app/domain/**",
-			"grails-app/taglib/**",
-			"grails-app/utilites/**",
-			"grails-app/views/error.gsp",
-			"grails-app/layouts/**",
-			"**/test/**"
-	]
+    def doWithWebDescriptor = { xml ->
+    }
 
-	def doWithWebDescriptor = { xml -> }
+    def doWithSpring = {
+        GrailsApplication grailsApplication
 
-	def doWithSpring = {
-		def prop = application.config.twitter.userListenerClass
-		if(prop) {
-			def clazz = application.classLoader.loadClass(prop)
-			log.debug "Register twitter user listenet[${clazz}]"
-			twitterUserListener(clazz)
-		} else {
-			log.debug "There is no Tweeter User Listener to register."
-		}
+        grailsApplication = new DefaultGrailsApplication()
 
-		twitterStream(TwitterUserStreamFactoryBean) {
-			configuration = ConfigurationHolder.config.twitter.'default'
-		}
-	}
+        def prop = grailsApplication.config.twitter.userListenerClass
+        if(prop){
+            def clazz = application.classLoader.loadClass(prop)
+            log.debug "Register twitter user listenet[${clazz}]"
+            twitterUserListener(clazz)
+        }else{
+            log.debug "There is no Tweeter User Listener to register."
+        }
 
-	def doWithDynamicMethods = { ctx -> }
+        twitterStream(TwitterUserStreamFactoryBean){
+			configuration = grailsApplication.config.twitter.'default'
+        }
+    }
 
-	def doWithApplicationContext = { applicationContext ->
-		scheduleStream(applicationContext)
-	}
+    def doWithDynamicMethods = { ctx ->
+    }
 
-	def onShutdown = { event ->
-		def ctx = event.ctx
-		if(!ctx) {
-			log.error("Application context not found. Cannot execute shutdown code.")
-			return
-		}
-		def twitterStream = ctx.getBean("twitterStream")
-		if(twitterStream) {
-			twitterStream.shutdown()
-		}
-	}
+    def doWithApplicationContext = { applicationContext ->
+        scheduleStream(applicationContext)
+    }
 
-	def onChange = { event -> }
+    def onChange = { event ->
+        // watching is modified and reloaded. The event contains: event.source,
+        // event.application, event.manager, event.ctx, and event.plugin.
+    }
 
-	def onConfigChange = { event -> }
+    def onConfigChange = { event ->
+        // The event is the same as for 'onChange'.
+    }
 
-	def scheduleStream = { ctx ->
-		if(ctx.containsBean('twitterUserListener')) {
-			def twitterUserListener = ctx.getBean('twitterUserListener')
-			def twitterStream = ctx.getBean('twitterStream')
-			twitterStream.addListener(twitterUserListener);
-			// user() method internally creates a thread which manipulates TwitterStream and calls these adequate listener methods continuously.
-			twitterStream.user();
+    def onShutdown = { event ->
+        def ctx = event.ctx
+        if(!ctx) {
+            log.error("Application context not found. Cannot execute shutdown code.")
+            return
+        }
+        def twitterStream = ctx.getBean("twitterStream")
+        if(twitterStream) {
+            twitterStream.shutdown()
+        }
+    }
 
-			log.debug "Twitter User Stream Created.."
-		}
-	}
+    def scheduleStream = {ctx ->
+        if(ctx.containsBean('twitterUserListener')){
+            def twitterUserListener = ctx.getBean('twitterUserListener')
+            TwitterStream twitterStream = ctx.getBean('twitterStream')
+            twitterStream.addListener(twitterUserListener);
+            twitterStream.user();
+
+            log.debug "Twitter User Stream Created.."
+        }
+    }
 }

@@ -2,8 +2,8 @@ package org.twitter4j.grails.plugin
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.FactoryBean;
-import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
+import twitter4j.*
 
 class TwitterUserStreamFactoryBean implements FactoryBean{
 	Logger log = Logger.getLogger(getClass())
