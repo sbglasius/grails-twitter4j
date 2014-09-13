@@ -1,5 +1,3 @@
-import grails.util.Holder
-import grails.util.Holders
 import org.twitter4j.grails.plugin.TwitterUserStreamFactoryBean
 import twitter4j.TwitterStream
 
@@ -19,7 +17,7 @@ class Twitter4jGrailsPlugin {
     def authorEmail = "soeren@glasius.dk, arthurnn@gmail.com, rubensalinasgarcia@gmail.com"
     def description = 'Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)'
 
-    def documentation =  "http://sbglasius.github.io/grails-twitter4j/"
+    def documentation = "http://sbglasius.github.io/grails-twitter4j/"
 
     def license = "APACHE"
 
@@ -29,8 +27,8 @@ class Twitter4jGrailsPlugin {
             [name: "Ricardo Vilella", email: "vilellaricardo@gmail.com"]
     ]
 
-    def issueManagement = [ system: "GitHub", url: "https://github.com/sbglasius/grails-twitter4j" ]
-    def scm = [ url: "https://github.com/sbglasius/grails-twitter4j/settings" ]
+    def issueManagement = [system: "GitHub", url: "https://github.com/sbglasius/grails-twitter4j"]
+    def scm = [url: "https://github.com/sbglasius/grails-twitter4j/settings"]
 
     def doWithWebDescriptor = { xml ->
     }
