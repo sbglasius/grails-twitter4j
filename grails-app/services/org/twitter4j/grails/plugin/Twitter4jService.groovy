@@ -9,7 +9,7 @@ class Twitter4jService {
     def grailsApplication
     static transactional = false
 
-    @Delegate @Lazy
+    @Delegate
     Twitter twitter = connect()
 
     def connect(account = 'default') {
