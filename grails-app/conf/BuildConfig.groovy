@@ -16,14 +16,15 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        compile group: "org.twitter4j", name: "twitter4j-core", version: "4.0.2"
-        compile group: "org.twitter4j", name: "twitter4j-stream", version: "4.0.2"
-        compile group: "org.twitter4j", name: "twitter4j-async", version: "4.0.2"
+        def twitter4jVersion = '4.0.2'
+        compile group: "org.twitter4j", name: "twitter4j-core", version: twitter4jVersion
+        compile group: "org.twitter4j", name: "twitter4j-stream", version: twitter4jVersion
+        compile group: "org.twitter4j", name: "twitter4j-async", version: twitter4jVersion
     }
 
     plugins {
         build(":release:3.0.1",
-                ":rest-client-builder:1.0.3") {
+                ":rest-client-builder:2.0.3") {
             export = false
         }
     }

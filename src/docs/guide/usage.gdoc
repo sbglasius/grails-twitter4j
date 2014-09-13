@@ -1,0 +1,81 @@
+h1. Configuration
+
+h2. Enable your application in twitter.
+Log into your twitter account (eg. [http://www.twitter.com/yourname]) and then go to [https://dev.twitter.com/apps/new] to register your app.
+
+Select your application type as "Client"
+
+Make a note of your Consumer Key and Consumer Secret, you will need it shortly
+
+
+h2. Getting your requestToken from Twitter
+run your app, and goto http://localhost:8080/yourApp/twitter4j- enter the Consumer Key and Secret and click "Request token"
+
+Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"
+
+Paste the configuration code into your Config.groovy file and restart the app
+
+
+h2. Test if it works
+Goto http://localhost:8080/yourApp/twitter4j/status and enter a twitter-message. If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname
+
+
+h2. Examples
+The following are some simple examples to give you a feel for the plugin.
+
+
+h3. Sending a twitter update
+In a controller or service
+{code}
+class SomeController {
+    def twitter4jService
+
+    def someAction = {
+        twitter4jService.updateStatus("This is a status-update from twitter")
+    }
+}
+{code}
+
+
+h3. Getting your own latest updates
+{code}
+class SomeController {
+    def twitter4jService
+
+    def someAction = {
+        def updates = twitter4jService.getUserTimeline() // of type ResponseList<Status>
+        [statusUpdates: updates]
+    }
+}
+{code}
+
+
+h3. More than one twitter-account?
+Alter your configuration to:
+{code}
+twitter {
+    disableTwitter4jController = true
+    'default' {
+        OAuthConsumerKey = '******'
+        OAuthConsumerSecret = '************'
+        OAuthAccessToken = '************'
+        OAuthAccessTokenSecret = '************'
+    }
+    'otherAccount' {
+        OAuthConsumerKey = '******'
+        OAuthConsumerSecret = '************'
+        OAuthAccessToken = '************'
+        OAuthAccessTokenSecret = '************'
+    }
+}
+{code}
+And before your twitter-calls do this
+
+{code}
+twitter4j.connect('otherAccount')
+{code}
+
+h2. Where to get more information.
+The plugin exposes the Twitterj4 API through `@Delegation`.
+
+Find the Twitter4j homepage here: [http://twitter4j.org]
