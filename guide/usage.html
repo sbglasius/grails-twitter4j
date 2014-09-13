@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>2 Usage 4.0.4.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/usage.html"><strong>2</strong><span>Usage</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+
+
+                <div class="project">
+                    <h1>2 Usage - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Soeren Berg Glasius</p>
+
+                    <p><strong>Version:</strong> 4.0.4.0</p>
+
+                    
+                </div>
+
+                
+
+                
+<a name="2. Usage"><!-- Legacy link --></a>
+<h1 id="usage">2 Usage</h1>
+<h1>Configuration</h1><p class="paragraph"/><h2>Enable your application in twitter.</h2>
+Log into your twitter account (eg. <a href="http://www.twitter.com/yourname" target="blank"></a>) and then go to <a href="https://dev.twitter.com/apps/new" target="blank"></a> to register your app.<p class="paragraph"/>Select your application type as "Client"<p class="paragraph"/>Make a note of your Consumer Key and Consumer Secret, you will need it shortly<p class="paragraph"/>
+<h2>Getting your requestToken from Twitter</h2>
+run your app, and goto http://localhost:8080/yourApp/twitter4j- enter the Consumer Key and Secret and click "Request token"<p class="paragraph"/>Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"<p class="paragraph"/>Paste the configuration code into your Config.groovy file and restart the app<p class="paragraph"/>
+<h2>Test if it works</h2>
+Goto http://localhost:8080/yourApp/twitter4j/status and enter a twitter-message. If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname<p class="paragraph"/>
+<h2>Examples</h2>
+The following are some simple examples to give you a feel for the plugin.<p class="paragraph"/>
+<h3>Sending a twitter update</h3>
+In a controller or service
+<div class="code"><pre>class SomeController &#123;
+    def twitter4jService<p class="paragraph"/>    def someAction = &#123;
+        twitter4jService.updateStatus(<span class="java&#45;quote">"This is a status&#45;update from twitter"</span>)
+    &#125;
+&#125;</pre></div><p class="paragraph"/>
+<h3>Getting your own latest updates</h3>
+<div class="code"><pre>class SomeController &#123;
+    def twitter4jService<p class="paragraph"/>    def someAction = &#123;
+        def updates = twitter4jService.getUserTimeline() // of type ResponseList&#60;Status&#62;
+        &#91;statusUpdates: updates&#93;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>
+<h3>More than one twitter-account?</h3>
+Alter your configuration to:
+<div class="code"><pre>twitter &#123;
+    disableTwitter4jController = <span class="java&#45;keyword">true</span>
+    '<span class="java&#45;keyword">default</span>' &#123;
+        OAuthConsumerKey = '&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthConsumerSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessToken = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessTokenSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+    &#125;
+    'otherAccount' &#123;
+        OAuthConsumerKey = '&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthConsumerSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessToken = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+        OAuthAccessTokenSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
+    &#125;
+&#125;</pre></div>
+And before your twitter-calls do this<p class="paragraph"/><div class="code"><pre>twitter4j.connect('otherAccount')</pre></div><p class="paragraph"/><h2>Where to get more information.</h2>
+The plugin exposes the Twitterj4 API through `@Delegation`.<p class="paragraph"/>Find the Twitter4j homepage here: <a href="http://twitter4j.org" target="blank"></a>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
