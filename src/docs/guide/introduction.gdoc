@@ -1,0 +1,12 @@
+This plugin makes it easy to both send and receive Twitter messages inside a Grails application.
+
+h2. Changelog
+
+h3. Version 4.0.4.0
+
+* Trying to revitalize the plugin with help from Daniel Gerbaudo
+* Dependent on Twitter4j version 4.0.4
+* Documentation will have new home here: http://sbglasius.github.io/grails-twitter4j
+* Version scheme will follow Twitter4j version + an extra minor version for the plugin version
+* Configuration in the service now accessed through Holders
+

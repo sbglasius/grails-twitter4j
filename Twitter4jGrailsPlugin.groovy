@@ -19,25 +19,18 @@ class Twitter4jGrailsPlugin {
     def authorEmail = "soeren@glasius.dk"
     def description = 'Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)'
 
-    // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/twitter4j"
-
-    // Extra (optional) plugin metadata
+    def documentation =  "http://sbglasius.github.io/grails-twitter4j/"
 
     def license = "APACHE"
 
-    // Any additional developers beyond the author specified above.
     def developers = [
             [name: 'Arthur Neves', email: 'arthurnn@gmail.com'],
             [name: "Daniel Gerbaudo", email: "info@danielgerbaudo.com"],
             [name: "Ricardo Vilella", email: "vilellaricardo@gmail.com"]
     ]
 
-    // Location of the plugin's issue tracker.
-//    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
-
-    // Online location of the plugin's browseable source code.
-//    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
+    def issueManagement = [ system: "GitHub", url: "https://github.com/sbglasius/grails-twitter4j" ]
+    def scm = [ url: "https://github.com/sbglasius/grails-twitter4j/settings" ]
 
     def doWithWebDescriptor = { xml ->
     }
