@@ -14,9 +14,7 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.4.3/projects/twitter4j/plugins/release-3.0.1/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.4.3/projects/twitter4j/plugins/release-3.0.1/src/groovy" isTestSource="false" />
     </content>
-    <content url="file://$USER_HOME$/.grails/2.4.3/projects/twitter4j/plugins/rest-client-builder-1.0.3">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.4.3/projects/twitter4j/plugins/rest-client-builder-1.0.3/src/groovy" isTestSource="false" />
-    </content>
+    <content url="file://$USER_HOME$/.grails/2.4.3/projects/twitter4j/plugins/rest-client-builder-2.0.3" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Grails 2.4.3" level="project" />
@@ -108,6 +106,9 @@
           <root url="jar://$USER_HOME$/.gvm/grails/2.4.3/lib/net.java.dev.jna/jna/jars/jna-4.0.0.jar!/" />
           <root url="jar://$USER_HOME$/.gvm/grails/2.4.3/lib/org.apache.ant/ant-junit/jars/ant-junit-1.8.4.jar!/" />
           <root url="jar://$USER_HOME$/.gvm/grails/2.4.3/lib/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-plugin-converters/2.3.9/grails-plugin-converters-2.3.9.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.5/commons-codec-1.5.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-rest-client/1.0.1.RELEASE/grails-datastore-rest-client-1.0.1.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

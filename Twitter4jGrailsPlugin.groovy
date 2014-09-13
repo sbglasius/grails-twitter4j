@@ -6,9 +6,9 @@ import twitter4j.TwitterStream
 class Twitter4jGrailsPlugin {
 
     // the plugin version (Follows Twitter4j library version + number for plugin revision)
-    def version = "4.0.4.0-SNAPSHOT"
+    def version = "4.0.4.0"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "2.4 > *"
+    def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
             "grails-app/views/error.gsp"

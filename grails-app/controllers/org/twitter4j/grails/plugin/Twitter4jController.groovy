@@ -1,19 +1,20 @@
 package org.twitter4j.grails.plugin
 
+import grails.util.Holders
 import twitter4j.Twitter
 import twitter4j.TwitterException
 import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
+
 import javax.servlet.http.HttpServletResponse
 
 class Twitter4jController {
 
-    def grailsApplication
     def twitter4jService
 
     def beforeInterceptor = {
-        if (grailsApplication.config.twitter.disableTwitter4jController) {
+        if (Holders.config.twitter.disableTwitter4jController) {
             log.debug("Twitter4jController is disabled")
             response.sendError HttpServletResponse.SC_NOT_FOUND
             return false
@@ -21,8 +22,8 @@ class Twitter4jController {
         return true
     }
     def index = {
-        def consumerKey = grailsApplication.config.twitter4j.OAuthConsumerKey ?: ''
-        def consumerSecret = grailsApplication.config.twitter4j.OAuthConsumerSecret ?: ''
+        def consumerKey = Holders.config.twitter4j.OAuthConsumerKey ?: ''
+        def consumerSecret = Holders.config.twitter4j.OAuthConsumerSecret ?: ''
         [consumerKey: consumerKey, consumerSecret: consumerSecret]
     }
 
