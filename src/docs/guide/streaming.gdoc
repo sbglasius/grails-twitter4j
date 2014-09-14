@@ -1,0 +1,26 @@
+
+To subscribe to a Twitter Stream you must implement one of the sub-interfaces of @twitter4j.StreamListener@ or extend
+one of the already implemented adapters.
+
+h3. Example
+(code}
+package demo
+
+import twitter4j.Status
+import twitter4j.StatusAdapter
+
+class MyStatusListener extends StatusAdapter{
+    @Override
+    void onStatus(Status status) {
+        println status.text
+    }
+}
+{code}
+
+To let the plugin know about the implementation, add the following to the configuration:
+
+{code}
+twitter4j.userListenerClass = "demo.MyStatusListener"
+{code}
+
+Happy Streaming

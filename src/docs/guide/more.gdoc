@@ -1,0 +1,31 @@
+h2. More than one twitter-account?
+Alter your configuration to:
+{code}
+twitter4j {
+    enableTwitter4jController = false
+    'default' {
+        OAuthConsumerKey = '******'
+        OAuthConsumerSecret = '************'
+        OAuthAccessToken = '************'
+        OAuthAccessTokenSecret = '************'
+    }
+    'otherAccount' {
+        OAuthConsumerKey = '******'
+        OAuthConsumerSecret = '************'
+        OAuthAccessToken = '************'
+        OAuthAccessTokenSecret = '************'
+    }
+}
+{code}
+The plugin will automatically configure the bean @twitter4jService@ if the @default@  configuration is found.
+If you need additional accounts configured, for example with @otherAccount@ as defined above,
+you need to add an additional bean in @grails-app/conf/spring/resources.groovy@ like this:
+{code}
+otherAccount(Twitter4jFactoryBean) {
+    configuration = Holders.config.otherAccount
+}
+{code}
+
+h2. Where to get more information.
+
+Look at the documentation found on the [Twitter4j homepage|http://twitter4j.org]

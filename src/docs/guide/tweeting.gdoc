@@ -1,0 +1,26 @@
+The following are some simple examples to give you a feel for the plugin.
+
+h3. Sending a twitter update
+In a controller or service
+{code}
+class SomeController {
+    def twitter4jService
+
+    def someAction = {
+        twitter4jService.updateStatus("This is a status-update from twitter")
+    }
+}
+{code}
+
+
+h3. Getting your own latest updates
+{code}
+class SomeController {
+    def twitter4jService
+
+    def someAction = {
+        def updates = twitter4jService.getUserTimeline() // of type ResponseList<Status>
+        [statusUpdates: updates]
+    }
+}
+{code}

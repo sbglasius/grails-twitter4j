@@ -1,0 +1,34 @@
+h1. Configuration
+
+h2. Enable your application in twitter.
+Log into your twitter account (eg. [http://www.twitter.com/yourname]) and then go to [https://dev.twitter.com/apps/new] to register your app.
+
+Select your application type as "Client"
+
+Make a note of your API Key and API Secret, you will need it shortly
+
+
+h2. Getting your requestToken from Twitter
+
+Start by enabling the Twitter4J controller
+{code}
+twitter4j.enableTwitter4jController = true
+{code}
+
+Then run your app, and goto @http://localhost:8080/yourApp/twitter4j@ - enter the API Key and API Secret
+and click "Request token"
+
+Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"
+
+Paste the configuration code into your @Config.groovy@ file. The app should reload your configuration, if not restart the app.
+
+
+h2. Test if it works
+Goto @http://localhost:8080/yourApp/twitter4j/status@ and enter a twitter-message.
+If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname
+
+
+
+
+
+
