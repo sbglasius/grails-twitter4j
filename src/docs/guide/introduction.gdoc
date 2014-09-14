@@ -5,6 +5,17 @@ h2. Version information
 The plugin is now versioned together with the twitter4j jar library it depends on. If there are patches to a given
 version of the plugin due to bugs, the version will be extended.
 
+h2. Thanks goes to:
+The plugin would not be what is is without the following contributors:
+
+[table]
+Arthur Neves    | arthurnn@gmail.com
+Daniel Gerbaudo | info@danielgerbaudo.com
+Rubén Salinas   | rubensalinasgarcia@gmail.com
+Ricardo Vilella | vilellaricardo@gmail.co
+[table]
+If I forgot to mention contributors, let me know and I will update the list ASAP.
+
 h2. If you use it, let me know
 
 If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.

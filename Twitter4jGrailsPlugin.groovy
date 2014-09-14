@@ -6,7 +6,7 @@ import twitter4j.TwitterStream
 class Twitter4jGrailsPlugin {
 
     // the plugin version (Follows Twitter4j library version + number for plugin revision)
-    def version = "4.0.4.0-SNAPSHOT"
+    def version = "4.0.4.0"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
@@ -15,8 +15,8 @@ class Twitter4jGrailsPlugin {
     ]
 
     def title = "Twitter4j for Grails"
-    def author = "Soeren Berg Glasius, Arthur Neves, Rubén Salinas"
-    def authorEmail = "soeren@glasius.dk, arthurnn@gmail.com, rubensalinasgarcia@gmail.com"
+    def author = "Soeren Berg Glasius"
+    def authorEmail = "soeren@glasius.dk"
     def description = 'Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)'
 
     def documentation = "http://sbglasius.github.io/grails-twitter4j/"
@@ -33,9 +33,6 @@ class Twitter4jGrailsPlugin {
     def issueManagement = [system: "GitHub", url: "https://github.com/sbglasius/grails-twitter4j"]
     def scm = [url: "https://github.com/sbglasius/grails-twitter4j/settings"]
 
-    def doWithWebDescriptor = { xml ->
-    }
-
     def doWithSpring = {
         Map twitterConfig = Holders.config.twitter4j
 
@@ -43,7 +40,6 @@ class Twitter4jGrailsPlugin {
         d.delegate = delegate
         d.call(twitterConfig)
     }
-
 
     def doWithApplicationContext = { applicationContext ->
         scheduleStream(applicationContext)
@@ -86,7 +82,6 @@ class Twitter4jGrailsPlugin {
     }
 
     private configureBeans = { twitterConfig ->
-
         def userListenerClass = twitterConfig.userListenerClass
         if (userListenerClass) {
 
