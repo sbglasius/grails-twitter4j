@@ -14,13 +14,14 @@ class Twitter4jController {
     def twitter4jService
 
     def beforeInterceptor = {
-        if (Holders.config.twitter.disableTwitter4jController) {
-            log.debug("Twitter4jController is disabled")
-            response.sendError HttpServletResponse.SC_NOT_FOUND
-            return false
+        if (Holders.config.twitter4j.enableTwitter4jController) {
+            return true
         }
-        return true
+        log.debug("Twitter4jController is disabled")
+        response.sendError HttpServletResponse.SC_NOT_FOUND
+        return false
     }
+
     def index = {
         def consumerKey = Holders.config.twitter4j.OAuthConsumerKey ?: ''
         def consumerSecret = Holders.config.twitter4j.OAuthConsumerSecret ?: ''
@@ -39,7 +40,7 @@ class Twitter4jController {
     def verifyPin = {
         Twitter twitter = session.twitter
         RequestToken requestToken = session.requestToken
-        AccessToken accessToken
+        AccessToken accessToken = null
         try {
             accessToken = twitter.getOAuthAccessToken(requestToken, params.pin)
         } catch (TwitterException te) {
@@ -57,7 +58,6 @@ class Twitter4jController {
     }
 
     def update = {
-        twitter4jService.connect()
         try {
             twitter4jService.updateStatus(params.statusMessage)
             flash.message = "Posted status: ${params.statusMessage} on ${twitter4jService.screenName}"

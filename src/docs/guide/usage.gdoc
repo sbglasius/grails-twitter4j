@@ -5,19 +5,27 @@ Log into your twitter account (eg. [http://www.twitter.com/yourname]) and then g
 
 Select your application type as "Client"
 
-Make a note of your Consumer Key and Consumer Secret, you will need it shortly
+Make a note of your API Key and API Secret, you will need it shortly
 
 
 h2. Getting your requestToken from Twitter
-run your app, and goto http://localhost:8080/yourApp/twitter4j- enter the Consumer Key and Secret and click "Request token"
+
+Start by enabling the Twitter4J controller
+{code}
+twitter4j.enableTwitter4jController = true
+{code}
+
+Then run your app, and goto @http://localhost:8080/yourApp/twitter4j@ - enter the API Key and API Secret
+and click "Request token"
 
 Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"
 
-Paste the configuration code into your Config.groovy file and restart the app
+Paste the configuration code into your @Config.groovy@ file. The app should reload your configuration, if not restart the app.
 
 
 h2. Test if it works
-Goto http://localhost:8080/yourApp/twitter4j/status and enter a twitter-message. If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname
+Goto @http://localhost:8080/yourApp/twitter4j/status@ and enter a twitter-message.
+If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname
 
 
 h2. Examples
@@ -53,8 +61,8 @@ class SomeController {
 h3. More than one twitter-account?
 Alter your configuration to:
 {code}
-twitter {
-    disableTwitter4jController = true
+twitter4j {
+    enableTwitter4jController = false
     'default' {
         OAuthConsumerKey = '******'
         OAuthConsumerSecret = '************'
@@ -69,13 +77,14 @@ twitter {
     }
 }
 {code}
-And before your twitter-calls do this
-
+The plugin will automatically configure the bean @twitter4jService@ if the @default@  configuration is found.
+If you need additional accounts configured, for example with @otherAccount@ as defined above,
+you need to add an additional bean in @grails-app/conf/spring/resources.groovy@ like this:
 {code}
-twitter4j.connect('otherAccount')
+otherAccount(Twitter4jFactoryBean) {
+    configuration = Holders.config.otherAccount
+}
 {code}
-
 h2. Where to get more information.
-The plugin exposes the Twitterj4 API through `@Delegation`.
 
-Find the Twitter4j homepage here: [http://twitter4j.org]
+Look at the documentation found on the [Twitter4j homepage|http://twitter4j.org]

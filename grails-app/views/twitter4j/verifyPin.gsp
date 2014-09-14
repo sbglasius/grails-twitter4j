@@ -8,10 +8,10 @@
   <h1>Twitter settings</h1>
   <p>Make the following entry in your Config.groovy</p>
 <pre>
-  twitter {
-    disableTwitter4jController = false  // To avoid intruders to use controller alltogether.
+  twitter4j {
+    enableTwitter4jController = false  // To avoid intruders to use controller all together.
     'default' {
-      debugEnabled          = false
+      debugEnabled           = false
       OAuthConsumerKey       = '${consumerKey}'
       OAuthConsumerSecret    = '${consumerSecret}'
       OAuthAccessToken       = '${accessToken.token}'

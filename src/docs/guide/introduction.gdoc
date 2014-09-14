@@ -8,12 +8,20 @@ version of the plugin due to bugs, the version will be extended.
 h2. If you use it, let me know
 
 If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
-Send me a tweet to @sbglasius or send me an email to soeren@glasius.dk - thank you!
+Send me a tweet: \@sbglasius or an email: soeren\@glasius.dk - thank you!
 
 h2. Changelog
 
 h3. Version 4.0.4.0
-
+{warning}
+Breaking changes:
+* The @Twitter4jService.groovy@ has gone, it has been replaced by a bean configured in the plugin with the same name.
+* The configuration blog has changed. It is now named @twitter4j@ and not @twitter@.
+* The @Twitter4JController@ actions are all disabled by default. To enable create the the following key in @Config.groovy@
+{code}
+twitter4j.enableTwitter4jController = true
+{code}
+{warning}
 * Trying to revitalize the plugin with help from Daniel Gerbaudo
 * Dependent on Twitter4j version 4.0.4
 * Documentation will have new home here: http://sbglasius.github.io/grails-twitter4j
