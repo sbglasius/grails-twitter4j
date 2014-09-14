@@ -3,7 +3,7 @@ To subscribe to a Twitter Stream you must implement one of the sub-interfaces of
 one of the already implemented adapters.
 
 h3. Example
-(code}
+{code}
 package demo
 
 import twitter4j.Status
