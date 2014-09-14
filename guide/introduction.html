@@ -76,7 +76,24 @@ function addJsClass() {
                 
 <a name="1. Introduction"><!-- Legacy link --></a>
 <h1 id="introduction">1 Introduction</h1>
-This plugin makes it easy to both send and receive Twitter messages inside a Grails application.<p class="paragraph"/><h2>Changelog</h2><p class="paragraph"/><h3>Version 4.0.4.0</h3>
+This plugin makes it easy to both send and receive Twitter messages inside a Grails application.<p class="paragraph"/><h2>Version information</h2><p class="paragraph"/>The plugin is now versioned together with the twitter4j jar library it depends on. If there are patches to a given
+version of the plugin due to bugs, the version will be extended.<p class="paragraph"/><h2>Thanks goes to:</h2>
+The plugin would not be what is is without the following contributors:<p class="paragraph"/>table
+Arthur Neves    | arthurnn@gmail.com
+Daniel Gerbaudo | info@danielgerbaudo.com
+Rubén Salinas   | rubensalinasgarcia@gmail.com
+Ricardo Vilella | vilellaricardo@gmail.co
+table
+If I forgot to mention contributors, let me know and I will update the list ASAP.<p class="paragraph"/><h2>If you use it, let me know</h2><p class="paragraph"/>If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
+Send me a tweet: &#64;sbglasius or an email: soeren&#64;glasius.dk - thank you!<p class="paragraph"/><h2>Changelog</h2><p class="paragraph"/><h3>Version 4.0.4.0</h3>
+<blockquote class="warning">
+Breaking changes:
+<ul class="star">
+<li>The <code>Twitter4jService.groovy</code> has gone, it has been replaced by a bean configured in the plugin with the same name.</li>
+<li>The configuration blog has changed. It is now named <code>twitter4j</code> and not <code>twitter</code>.</li>
+<li>The <code>Twitter4JController</code> actions are all disabled by default. To enable create the the following key in <code>Config.groovy</code></li>
+</ul><p class="paragraph"/><div class="code"><pre>twitter4j.enableTwitter4jController = <span class="java&#45;keyword">true</span></pre></div>
+</blockquote>
 <ul class="star">
 <li>Trying to revitalize the plugin with help from Daniel Gerbaudo</li>
 <li>Dependent on Twitter4j version 4.0.4</li>

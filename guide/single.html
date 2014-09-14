@@ -72,7 +72,24 @@ function addJsClass(el) {
                         
 <a name="1. Introduction"><!-- Legacy link --></a>
 <h1 id="introduction">1 Introduction</h1>
-This plugin makes it easy to both send and receive Twitter messages inside a Grails application.<p class="paragraph"/><h2>Changelog</h2><p class="paragraph"/><h3>Version 4.0.4.0</h3>
+This plugin makes it easy to both send and receive Twitter messages inside a Grails application.<p class="paragraph"/><h2>Version information</h2><p class="paragraph"/>The plugin is now versioned together with the twitter4j jar library it depends on. If there are patches to a given
+version of the plugin due to bugs, the version will be extended.<p class="paragraph"/><h2>Thanks goes to:</h2>
+The plugin would not be what is is without the following contributors:<p class="paragraph"/>table
+Arthur Neves    | arthurnn@gmail.com
+Daniel Gerbaudo | info@danielgerbaudo.com
+Rubén Salinas   | rubensalinasgarcia@gmail.com
+Ricardo Vilella | vilellaricardo@gmail.co
+table
+If I forgot to mention contributors, let me know and I will update the list ASAP.<p class="paragraph"/><h2>If you use it, let me know</h2><p class="paragraph"/>If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
+Send me a tweet: &#64;sbglasius or an email: soeren&#64;glasius.dk - thank you!<p class="paragraph"/><h2>Changelog</h2><p class="paragraph"/><h3>Version 4.0.4.0</h3>
+<blockquote class="warning">
+Breaking changes:
+<ul class="star">
+<li>The <code>Twitter4jService.groovy</code> has gone, it has been replaced by a bean configured in the plugin with the same name.</li>
+<li>The configuration blog has changed. It is now named <code>twitter4j</code> and not <code>twitter</code>.</li>
+<li>The <code>Twitter4JController</code> actions are all disabled by default. To enable create the the following key in <code>Config.groovy</code></li>
+</ul><p class="paragraph"/><div class="code"><pre>twitter4j.enableTwitter4jController = <span class="java&#45;keyword">true</span></pre></div>
+</blockquote>
 <ul class="star">
 <li>Trying to revitalize the plugin with help from Daniel Gerbaudo</li>
 <li>Dependent on Twitter4j version 4.0.4</li>
@@ -84,11 +101,13 @@ This plugin makes it easy to both send and receive Twitter messages inside a Gra
 <a name="2. Usage"><!-- Legacy link --></a>
 <h1 id="usage">2 Usage</h1>
 <h1>Configuration</h1><p class="paragraph"/><h2>Enable your application in twitter.</h2>
-Log into your twitter account (eg. <a href="http://www.twitter.com/yourname" target="blank"></a>) and then go to <a href="https://dev.twitter.com/apps/new" target="blank"></a> to register your app.<p class="paragraph"/>Select your application type as "Client"<p class="paragraph"/>Make a note of your Consumer Key and Consumer Secret, you will need it shortly<p class="paragraph"/>
-<h2>Getting your requestToken from Twitter</h2>
-run your app, and goto http://localhost:8080/yourApp/twitter4j- enter the Consumer Key and Secret and click "Request token"<p class="paragraph"/>Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"<p class="paragraph"/>Paste the configuration code into your Config.groovy file and restart the app<p class="paragraph"/>
+Log into your twitter account (eg. <a href="http://www.twitter.com/yourname" target="blank"></a>) and then go to <a href="https://dev.twitter.com/apps/new" target="blank"></a> to register your app.<p class="paragraph"/>Select your application type as "Client"<p class="paragraph"/>Make a note of your API Key and API Secret, you will need it shortly<p class="paragraph"/>
+<h2>Getting your requestToken from Twitter</h2><p class="paragraph"/>Start by enabling the Twitter4J controller
+<div class="code"><pre>twitter4j.enableTwitter4jController = <span class="java&#45;keyword">true</span></pre></div><p class="paragraph"/>Then run your app, and goto <code>http://localhost:8080/yourApp/twitter4j</code> - enter the API Key and API Secret
+and click "Request token"<p class="paragraph"/>Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"<p class="paragraph"/>Paste the configuration code into your <code>Config.groovy</code> file. The app should reload your configuration, if not restart the app.<p class="paragraph"/>
 <h2>Test if it works</h2>
-Goto http://localhost:8080/yourApp/twitter4j/status and enter a twitter-message. If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname<p class="paragraph"/>
+Goto <code>http://localhost:8080/yourApp/twitter4j/status</code> and enter a twitter-message.
+If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname<p class="paragraph"/>
 <h2>Examples</h2>
 The following are some simple examples to give you a feel for the plugin.<p class="paragraph"/>
 <h3>Sending a twitter update</h3>
@@ -107,8 +126,8 @@ In a controller or service
 &#125;</pre></div><p class="paragraph"/>
 <h3>More than one twitter-account?</h3>
 Alter your configuration to:
-<div class="code"><pre>twitter &#123;
-    disableTwitter4jController = <span class="java&#45;keyword">true</span>
+<div class="code"><pre>twitter4j &#123;
+    enableTwitter4jController = <span class="java&#45;keyword">false</span>
     '<span class="java&#45;keyword">default</span>' &#123;
         OAuthConsumerKey = '&#42;&#42;&#42;&#42;&#42;&#42;'
         OAuthConsumerSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
@@ -122,8 +141,13 @@ Alter your configuration to:
         OAuthAccessTokenSecret = '&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;'
     &#125;
 &#125;</pre></div>
-And before your twitter-calls do this<p class="paragraph"/><div class="code"><pre>twitter4j.connect('otherAccount')</pre></div><p class="paragraph"/><h2>Where to get more information.</h2>
-The plugin exposes the Twitterj4 API through `@Delegation`.<p class="paragraph"/>Find the Twitter4j homepage here: <a href="http://twitter4j.org" target="blank"></a>
+The plugin will automatically configure the bean <code>twitter4jService</code> if the <code>default</code>  configuration is found.
+If you need additional accounts configured, for example with <code>otherAccount</code> as defined above,
+you need to add an additional bean in <code>grails-app/conf/spring/resources.groovy</code> like this:
+<div class="code"><pre>otherAccount(Twitter4jFactoryBean) &#123;
+    configuration = Holders.config.otherAccount
+&#125;</pre></div>
+<h2>Where to get more information.</h2><p class="paragraph"/>Look at the documentation found on the <a href="http://twitter4j.org" target="blank">Twitter4j homepage</a>
 
                     </div>
                 </td>
