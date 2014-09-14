@@ -25,7 +25,13 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
                             
-                            <div class="toc-item" style="margin-left:0"><a href="#usage"><strong>2</strong><span>Usage</span></a></div>
+                            <div class="toc-item" style="margin-left:0"><a href="#configuration"><strong>2</strong><span>Configuration</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#tweeting"><strong>3</strong><span>Tweeting</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#streaming"><strong>4</strong><span>Streaming</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#more"><strong>5</strong><span>More Information</span></a></div>
                             
                         </div>
                     </div>
@@ -64,7 +70,13 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:0px"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
                             
-                            <div class="toc-item" style="margin-left:0px"><a href="#usage"><strong>2</strong><span>Usage</span></a></div>
+                            <div class="toc-item" style="margin-left:0px"><a href="#configuration"><strong>2</strong><span>Configuration</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#tweeting"><strong>3</strong><span>Tweeting</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#streaming"><strong>4</strong><span>Streaming</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#more"><strong>5</strong><span>More Information</span></a></div>
                             
                             <div style="clear:both" ></div>
                         </div>
@@ -98,8 +110,8 @@ Breaking changes:
 <li>Configuration in the service now accessed through Holders</li>
 </ul><p class="paragraph"/>
 
-<a name="2. Usage"><!-- Legacy link --></a>
-<h1 id="usage">2 Usage</h1>
+<a name="2. Configuration"><!-- Legacy link --></a>
+<h1 id="configuration">2 Configuration</h1>
 <h1>Configuration</h1><p class="paragraph"/><h2>Enable your application in twitter.</h2>
 Log into your twitter account (eg. <a href="http://www.twitter.com/yourname" target="blank"></a>) and then go to <a href="https://dev.twitter.com/apps/new" target="blank"></a> to register your app.<p class="paragraph"/>Select your application type as "Client"<p class="paragraph"/>Make a note of your API Key and API Secret, you will need it shortly<p class="paragraph"/>
 <h2>Getting your requestToken from Twitter</h2><p class="paragraph"/>Start by enabling the Twitter4J controller
@@ -107,10 +119,12 @@ Log into your twitter account (eg. <a href="http://www.twitter.com/yourname" tar
 and click "Request token"<p class="paragraph"/>Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"<p class="paragraph"/>Paste the configuration code into your <code>Config.groovy</code> file. The app should reload your configuration, if not restart the app.<p class="paragraph"/>
 <h2>Test if it works</h2>
 Goto <code>http://localhost:8080/yourApp/twitter4j/status</code> and enter a twitter-message.
-If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname<p class="paragraph"/>
-<h2>Examples</h2>
-The following are some simple examples to give you a feel for the plugin.<p class="paragraph"/>
-<h3>Sending a twitter update</h3>
+If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname<p class="paragraph"/><p class="paragraph"/><p class="paragraph"/>
+
+
+<a name="3. Tweeting"><!-- Legacy link --></a>
+<h1 id="tweeting">3 Tweeting</h1>
+The following are some simple examples to give you a feel for the plugin.<p class="paragraph"/><h3>Sending a twitter update</h3>
 In a controller or service
 <div class="code"><pre>class SomeController &#123;
     def twitter4jService<p class="paragraph"/>    def someAction = &#123;
@@ -123,8 +137,25 @@ In a controller or service
         def updates = twitter4jService.getUserTimeline() // of type ResponseList&#60;Status&#62;
         &#91;statusUpdates: updates&#93;
     &#125;
-&#125;</pre></div><p class="paragraph"/>
-<h3>More than one twitter-account?</h3>
+&#125;</pre></div>
+
+
+<a name="4. Streaming"><!-- Legacy link --></a>
+<h1 id="streaming">4 Streaming</h1>
+
+To subscribe to a Twitter Stream you must implement one of the sub-interfaces of <code>twitter4j.StreamListener</code> or extend
+one of the already implemented adapters.<p class="paragraph"/><h3>Example</h3>
+<div class="code"><pre><span class="java&#45;keyword">package</span> demo<p class="paragraph"/><span class="java&#45;keyword">import</span> twitter4j.Status
+<span class="java&#45;keyword">import</span> twitter4j.StatusAdapter<p class="paragraph"/>class MyStatusListener <span class="java&#45;keyword">extends</span> StatusAdapter&#123;
+    @Override
+    void onStatus(Status status) &#123;
+        println status.text
+    &#125;
+&#125;</pre></div><p class="paragraph"/>To let the plugin know about the implementation, add the following to the configuration:<p class="paragraph"/><div class="code"><pre>twitter4j.userListenerClass = <span class="java&#45;quote">"demo.MyStatusListener"</span></pre></div><p class="paragraph"/>Happy Streaming
+
+<a name="5. More information"><!-- Legacy link --></a>
+<h1 id="more">5 More Information</h1>
+<h2>More than one twitter-account?</h2>
 Alter your configuration to:
 <div class="code"><pre>twitter4j &#123;
     enableTwitter4jController = <span class="java&#45;keyword">false</span>
@@ -146,8 +177,7 @@ If you need additional accounts configured, for example with <code>otherAccount<
 you need to add an additional bean in <code>grails-app/conf/spring/resources.groovy</code> like this:
 <div class="code"><pre>otherAccount(Twitter4jFactoryBean) &#123;
     configuration = Holders.config.otherAccount
-&#125;</pre></div>
-<h2>Where to get more information.</h2><p class="paragraph"/>Look at the documentation found on the <a href="http://twitter4j.org" target="blank">Twitter4j homepage</a>
+&#125;</pre></div><p class="paragraph"/><h2>Where to get more information.</h2><p class="paragraph"/>Look at the documentation found on the <a href="http://twitter4j.org" target="blank">Twitter4j homepage</a>
 
                     </div>
                 </td>

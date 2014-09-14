@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>1 Introduction 4.0.4.0</title>
+    <title>4 Streaming 4.0.4.0</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -62,16 +62,18 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
+                    <div class="toc-item prev-left"><a href="../guide/tweeting.html">&lt;&lt; <strong>3</strong><span>Tweeting</span></a></div>
+                
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../guide/configuration.html"><strong>2</strong><span>Configuration</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../guide/more.html"><strong>5</strong><span>More Information</span> >></a></div>
                 
 
 
                 <div class="project">
-                    <h1>1 Introduction - Reference Documentation</h1>
+                    <h1>4 Streaming - Reference Documentation</h1>
 
                     <p><strong>Authors:</strong> Soeren Berg Glasius</p>
 
@@ -83,38 +85,25 @@ function addJsClass() {
                 
 
                 
-<a name="1. Introduction"><!-- Legacy link --></a>
-<h1 id="introduction">1 Introduction</h1>
-This plugin makes it easy to both send and receive Twitter messages inside a Grails application.<p class="paragraph"/><h2>Version information</h2><p class="paragraph"/>The plugin is now versioned together with the twitter4j jar library it depends on. If there are patches to a given
-version of the plugin due to bugs, the version will be extended.<p class="paragraph"/><h2>Thanks goes to:</h2>
-The plugin would not be what is is without the following contributors:<p class="paragraph"/>table
-Arthur Neves    | arthurnn@gmail.com
-Daniel Gerbaudo | info@danielgerbaudo.com
-Rubén Salinas   | rubensalinasgarcia@gmail.com
-Ricardo Vilella | vilellaricardo@gmail.co
-table
-If I forgot to mention contributors, let me know and I will update the list ASAP.<p class="paragraph"/><h2>If you use it, let me know</h2><p class="paragraph"/>If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
-Send me a tweet: &#64;sbglasius or an email: soeren&#64;glasius.dk - thank you!<p class="paragraph"/><h2>Changelog</h2><p class="paragraph"/><h3>Version 4.0.4.0</h3>
-<blockquote class="warning">
-Breaking changes:
-<ul class="star">
-<li>The <code>Twitter4jService.groovy</code> has gone, it has been replaced by a bean configured in the plugin with the same name.</li>
-<li>The configuration blog has changed. It is now named <code>twitter4j</code> and not <code>twitter</code>.</li>
-<li>The <code>Twitter4JController</code> actions are all disabled by default. To enable create the the following key in <code>Config.groovy</code></li>
-</ul><p class="paragraph"/><div class="code"><pre>twitter4j.enableTwitter4jController = <span class="java&#45;keyword">true</span></pre></div>
-</blockquote>
-<ul class="star">
-<li>Trying to revitalize the plugin with help from Daniel Gerbaudo</li>
-<li>Dependent on Twitter4j version 4.0.4</li>
-<li>Documentation will have new home here: http://sbglasius.github.io/grails-twitter4j</li>
-<li>Version scheme will follow Twitter4j version + an extra minor version for the plugin version</li>
-<li>Configuration in the service now accessed through Holders</li>
-</ul><p class="paragraph"/>
+<a name="4. Streaming"><!-- Legacy link --></a>
+<h1 id="streaming">4 Streaming</h1>
+
+To subscribe to a Twitter Stream you must implement one of the sub-interfaces of <code>twitter4j.StreamListener</code> or extend
+one of the already implemented adapters.<p class="paragraph"/><h3>Example</h3>
+<div class="code"><pre><span class="java&#45;keyword">package</span> demo<p class="paragraph"/><span class="java&#45;keyword">import</span> twitter4j.Status
+<span class="java&#45;keyword">import</span> twitter4j.StatusAdapter<p class="paragraph"/>class MyStatusListener <span class="java&#45;keyword">extends</span> StatusAdapter&#123;
+    @Override
+    void onStatus(Status status) &#123;
+        println status.text
+    &#125;
+&#125;</pre></div><p class="paragraph"/>To let the plugin know about the implementation, add the following to the configuration:<p class="paragraph"/><div class="code"><pre>twitter4j.userListenerClass = <span class="java&#45;quote">"demo.MyStatusListener"</span></pre></div><p class="paragraph"/>Happy Streaming
 
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item next-right"><a href="../guide/configuration.html"><strong>2</strong><span>Configuration</span> >></a></div>
+                    <div class="toc-item prev-left"><a href="../guide/tweeting.html">&lt;&lt; <strong>3</strong><span>Tweeting</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/more.html"><strong>5</strong><span>More Information</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>
