@@ -47,7 +47,6 @@ class Twitter4jGrailsPlugin {
 
     def onConfigChange = { event ->
         // The event is the same as for 'onChange'.
-        println event
         Map twitterConfig = event.application.config.twitter4j
         final c = configureBeans.clone()
         def beans = beans {
