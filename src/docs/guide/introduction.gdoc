@@ -13,7 +13,9 @@ Arthur Neves    | arthurnn@gmail.com
 Daniel Gerbaudo | info@danielgerbaudo.com
 Rubén Salinas   | rubensalinasgarcia@gmail.com
 Ricardo Vilella | vilellaricardo@gmail.co
+Burt Beckwith   | burt@burtbeckwith.com
 [table]
+
 If I forgot to mention contributors, let me know and I will update the list ASAP.
 
 h2. If you use it, let me know
@@ -22,6 +24,9 @@ If you use this plugin in your application, let me know - it's always nice to kn
 Send me a tweet: \@sbglasius or an email: soeren\@glasius.dk - thank you!
 
 h2. Changelog
+
+h3. Versions 4.0.4.1 and 4.0.4.2
+* Code cleanup and documentation
 
 h3. Version 4.0.4.0
 {warning}

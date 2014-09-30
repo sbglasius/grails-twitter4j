@@ -41,7 +41,7 @@ class Twitter4jGrailsPlugin {
         final c = configureBeans.clone()
         def beans = beans {
             c.delegate = delegate
-            c(grailsClass)
+            c(twitterConfig)
         }
 
         beans.registerBeans(event.ctx)
