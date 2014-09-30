@@ -37,5 +37,3 @@ twitter4j.enableTwitter4jController = true
 * Dependent on Twitter4j version 4.0.4
 * Documentation will have new home here: http://sbglasius.github.io/grails-twitter4j
 * Version scheme will follow Twitter4j version + an extra minor version for the plugin version
-* Configuration in the service now accessed through Holders
-

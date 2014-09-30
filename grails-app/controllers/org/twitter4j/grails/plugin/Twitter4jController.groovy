@@ -1,6 +1,5 @@
 package org.twitter4j.grails.plugin
 
-import grails.util.Holders
 import twitter4j.Twitter
 import twitter4j.TwitterException
 import twitter4j.TwitterFactory
@@ -14,7 +13,7 @@ class Twitter4jController {
     def twitter4jService
 
     def beforeInterceptor = {
-        if (Holders.config.twitter4j.enableTwitter4jController) {
+        if (grailsApplication.config.twitter4j.enableTwitter4jController) {
             return true
         }
         log.debug("Twitter4jController is disabled")
@@ -22,49 +21,46 @@ class Twitter4jController {
         return false
     }
 
-    def index = {
-        def consumerKey = Holders.config.twitter4j.OAuthConsumerKey ?: ''
-        def consumerSecret = Holders.config.twitter4j.OAuthConsumerSecret ?: ''
-        [consumerKey: consumerKey, consumerSecret: consumerSecret]
+    def index() {
+        def conf = grailsApplication.config.twitter4j
+        [consumerKey: conf.OAuthConsumerKey ?: '', consumerSecret: conf.OAuthConsumerSecret ?: '']
     }
 
-    def requestToken = {
-        Twitter twitter = new TwitterFactory().getInstance();
-        twitter.setOAuthConsumer(params.consumerKey, params.consumerSecret)
+    def requestToken(String consumerKey, String consumerSecret) {
+        Twitter twitter = new TwitterFactory().instance
+        twitter.setOAuthConsumer(consumerKey, consumerSecret)
         RequestToken requestToken = twitter.getOAuthRequestToken()
         session.twitter = twitter
         session.requestToken = requestToken
-        [consumerKey: params.consumerKey, consumerSecret: params.consumerSecret, url: requestToken.authorizationURL]
+        [consumerKey: consumerKey, consumerSecret: consumerSecret, url: requestToken.authorizationURL]
     }
 
-    def verifyPin = {
+    def verifyPin(String consumerKey, String consumerSecret, String pin) {
         Twitter twitter = session.twitter
         RequestToken requestToken = session.requestToken
-        AccessToken accessToken = null
+        AccessToken accessToken
         try {
-            accessToken = twitter.getOAuthAccessToken(requestToken, params.pin)
+            accessToken = twitter.getOAuthAccessToken(requestToken, pin)
         } catch (TwitterException te) {
             if (401 == te.getStatusCode()) {
                 flash.message = "Unable to get the access token. ${te.message}"
-                redirect(action: 'requestToken', params: [consumerKey: params.consumerKey, consumerSecret: params.consumerSecret])
+                redirect(action: 'requestToken', params: [consumerKey: consumerKey, consumerSecret: consumerSecret])
             }
         }
-        session.twitter = null
-        session.requestToken = null
-        [consumerKey: params.consumerKey, consumerSecret: params.consumerSecret, accessToken: accessToken]
+        session.removeAttribute('twitter')
+        session.removeAttribute('requestToken')
+        [consumerKey: consumerKey, consumerSecret: consumerSecret, accessToken: accessToken]
     }
 
-    def status = {
-    }
+    def status() {}
 
-    def update = {
+    def update(String statusMessage) {
         try {
-            twitter4jService.updateStatus(params.statusMessage)
-            flash.message = "Posted status: ${params.statusMessage} on ${twitter4jService.screenName}"
+            twitter4jService.updateStatus(statusMessage)
+            flash.message = "Posted status: ${statusMessage} on ${twitter4jService.screenName}"
         } catch (TwitterException te) {
             flash.error = te.message
         }
         render(view: 'status')
     }
-
 }

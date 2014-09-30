@@ -1,33 +1,33 @@
 package org.twitter4j.grails.plugin
 
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.FactoryBean;
-import twitter4j.conf.ConfigurationBuilder;
-import twitter4j.*
+import org.apache.log4j.Logger
+import org.springframework.beans.factory.FactoryBean
 
-class TwitterUserStreamFactoryBean implements FactoryBean{
-	Logger log = Logger.getLogger(getClass())
-	
+import twitter4j.TwitterStream
+import twitter4j.TwitterStreamFactory
+import twitter4j.conf.ConfigurationBuilder
+
+class TwitterUserStreamFactoryBean implements FactoryBean<TwitterStream> {
+
+	private Logger log = Logger.getLogger(getClass().name)
+
 	def configuration
-	
-	Object getObject() {
-		
+
+	TwitterStream getObject() {
+
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		configuration.each { key, value ->
 			cb."$key" = value
 		}
-		
-		TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
-		
+
+		TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance()
+
 		log.debug "finish building tweet listener..."
-		
-		return twitterStream
+
+		twitterStream
 	}
 
-	Class getObjectType() { TwitterStream }
+	Class<TwitterStream> getObjectType() { TwitterStream }
 
 	boolean isSingleton() { true }
-	
-	
-	
 }
