@@ -13,6 +13,8 @@ class Twitter4jGrailsPlugin {
     def description = 'Wraps the Twitter4j API by Groovy delegation (see http://www.twitter4j.org for API documentation and examples)'
     def documentation = "http://sbglasius.github.io/grails-twitter4j/"
     def license = "APACHE"
+    def author = "Soeren Berg Glasius"
+    def authorEmail = "soeren@glasius.dk"
     def developers = [
         [name: 'Arthur Neves',        email: 'arthurnn@gmail.com'],
         [name: "Daniel Gerbaudo",     email: "info@danielgerbaudo.com"],
