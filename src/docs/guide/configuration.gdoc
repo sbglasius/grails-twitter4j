@@ -20,7 +20,7 @@ and click "Request token"
 
 Click the link on the next screen, and follow the instructions to obtain your PIN. Enter the pin-code and click "Verify pin"
 
-Paste the configuration code into your @Config.groovy@ file. The app should reload your configuration, if not restart the app.
+Paste the configuration code into your @application.yml@ file. The app should reload your configuration, if not restart the app.
 
 
 h2. Test if it works
@@ -28,7 +28,19 @@ Goto @http://localhost:8080/yourApp/twitter4j/status@ and enter a twitter-messag
 If it works, you should be able to see your update on your twitter page: http://www.twitter.com/yourname
 
 
+h1. Alternative Configuration
 
+You can generate your OAuthConsumerKey, OAuthConsumerSecret, OAuthAccessToken and OAuthAccessTokenSecret directly on Twitter and add the following to your @application.yml@ file.
+
+{code}
+twitter4j:
+     enableTwitter4jController: false ## To avoid intruders to use controller all together.
+     default:
+        OAuthConsumerKey: ******
+        OAuthConsumerSecret: ******
+        OAuthAccessToken: ******
+        OAuthAccessTokenSecret: ******
+{code}
 
 
 

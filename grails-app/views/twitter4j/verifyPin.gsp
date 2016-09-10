@@ -6,18 +6,15 @@
   </head>
   <body>
   <h1>Twitter settings</h1>
-  <p>Make the following entry in your Config.groovy</p>
+  <p>Make the following entry in your application.ytml</p>
 <pre>
-  twitter4j {
-    enableTwitter4jController = false  // To avoid intruders to use controller all together.
-    'default' {
-      debugEnabled           = false
-      OAuthConsumerKey       = '${consumerKey}'
-      OAuthConsumerSecret    = '${consumerSecret}'
-      OAuthAccessToken       = '${accessToken.token}'
-      OAuthAccessTokenSecret = '${accessToken.tokenSecret}'
-    }
-  }
+  twitter4j:
+     enableTwitter4jController: false ## To avoid intruders to use controller all together.
+     default:
+        OAuthConsumerKey: ${consumerKey}
+        OAuthConsumerSecret: ${consumerSecret}
+        OAuthAccessToken: ${accessToken.token}
+        OAuthAccessTokenSecret: ${accessToken.tokenSecret}
 </pre>
   <p>And you are ready to use the twitter API without logging in. You can define more than one twitter account by replacing 'default' with
   a name of your choice.</p>
