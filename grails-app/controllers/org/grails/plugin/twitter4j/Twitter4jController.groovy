@@ -1,4 +1,4 @@
-package org.twitter4j.grails.plugin
+package org.grails.plugin.twitter4j
 
 import twitter4j.Twitter
 import twitter4j.TwitterException
@@ -6,20 +6,9 @@ import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
 
-import javax.servlet.http.HttpServletResponse
-
 class Twitter4jController {
 
     def twitter4jService
-
-    def beforeInterceptor = {
-        if (grailsApplication.config.twitter4j.enableTwitter4jController) {
-            return true
-        }
-        log.debug("Twitter4jController is disabled")
-        response.sendError HttpServletResponse.SC_NOT_FOUND
-        return false
-    }
 
     def index() {
         def conf = grailsApplication.config.twitter4j

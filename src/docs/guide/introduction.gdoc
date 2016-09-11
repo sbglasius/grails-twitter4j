@@ -8,13 +8,15 @@ version of the plugin due to bugs, the version will be extended.
 h2. Thanks goes to:
 The plugin would not be what is is without the following contributors:
 
-[table]
-Arthur Neves    | arthurnn@gmail.com
-Daniel Gerbaudo | info@danielgerbaudo.com
-Rubén Salinas   | rubensalinasgarcia@gmail.com
-Ricardo Vilella | vilellaricardo@gmail.co
-Burt Beckwith   | burt@burtbeckwith.com
-[table]
+{table}
+*Name*
+Arthur Neves
+Daniel Gerbaudo
+Rubén Salinas
+Ricardo Vilella
+Burt Beckwith
+Roberto Perez Alcolea
+{table}
 
 If I forgot to mention contributors, let me know and I will update the list ASAP.
 
@@ -24,6 +26,9 @@ If you use this plugin in your application, let me know - it's always nice to kn
 Send me a tweet: \@sbglasius or an email: soeren\@glasius.dk - thank you!
 
 h2. Changelog
+
+h3. Version 4.0.4.3
+* Upgrade to Grails 3.x
 
 h3. Versions 4.0.4.1 and 4.0.4.2
 * Code cleanup and documentation
@@ -35,10 +40,11 @@ Breaking changes:
 * The configuration blog has changed. It is now named @twitter4j@ and not @twitter@.
 * The @Twitter4JController@ actions are all disabled by default. To enable create the the following key in @Config.groovy@
 {code}
-twitter4j.enableTwitter4jController = true
+twitter4j:
+    enableTwitter4jController: true
 {code}
 {warning}
 * Trying to revitalize the plugin with help from Daniel Gerbaudo
 * Dependent on Twitter4j version 4.0.4
-* Documentation will have new home here: http://sbglasius.github.io/grails-twitter4j
+* Documentation will have new home here: [http://sbglasius.github.io/grails-twitter4j|http://sbglasius.github.io/grails-twitter4j]
 * Version scheme will follow Twitter4j version + an extra minor version for the plugin version
